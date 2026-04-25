@@ -67,6 +67,10 @@ int main(int argc,char* argv[]){
 		read_server();
 		if(strcmp(buf,"1")!=0){
 			printf("%s\n",buf);
+		}
+
+		if(strcmp(buf,"failed to login")==0 || strcmp(buf,"User logged in")==0){
+			line();
 		}				
 		memset(buf,0,sizeof(buf));
 		read_std();
