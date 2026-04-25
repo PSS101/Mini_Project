@@ -28,7 +28,7 @@ void send_server(char buf[]){
 void read_server(){
 	if((n=recv(client_fd,buf,sizeof(buf)-1,0))>0){
                          buf[n] = '\0';
-                         printf("Server: %s\n",buf);
+                         //printf("Server: %s\n",buf);
 	}
 }
 
@@ -58,14 +58,20 @@ int main(int argc,char* argv[]){
 		exit(1);
 	}
 	printf("connected to server %s\n",argv[1]);
-	line();
 	
-
+	line();
+	read_server();
+	printf("%s\n",buf);
+	line();
 	for(;;){
+		read_server();
+		if(strcmp(buf,"1")!=0){
+			printf("%s\n",buf);
+		}				
 		memset(buf,0,sizeof(buf));
 		read_std();
 		send_server(buf);
-		read_server();
+		//read_server();
 		
 	}
 close(client_fd);
