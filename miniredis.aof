@@ -1,3 +1,4 @@
 SET name Hithesh
 LPUSH Name 1
 LPUSH Name 2
+SET name mango
