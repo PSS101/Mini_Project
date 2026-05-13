@@ -1,0 +1,44 @@
+SET k1 v1
+SET k2 v2
+SET k3 v3
+SADD myset apple
+SADD myset banana
+RPUSH mylist b
+RPUSH mylist c
+RPUSH mylist d
+ZADD leaderboard 100 alice
+ZADD leaderboard 150 charlie
+SET name alice_wonderland
+SET data important
+RPUSH Name 2
+RPUSH Name 1
+HSET user name alice
+HSET user age 30
+SET counter 12
+SET a 1
+SET b 2
+INCR a
+SET
+SET
+SET
+SET
+SET
+SET
+SET
+SET
+SET
+SET foo bar
+SET hello world
+LPUSH mylist item1
+HSET myhash name redis
+DEL foo
+ZADD leaderboard 100 alice
+INCR counter
+SADD myset member1
+SET hello world
+DEL name
+SET name "Hithesh reddy"
+DEL name
+SET name Hithesh
+DEL name
+SET name Hithesh
