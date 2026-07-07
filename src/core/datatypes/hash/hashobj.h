@@ -1,3 +1,8 @@
+/*
+ * Declares the hash-object interface.
+ * It exposes the public API for hash operations.
+ */
+
 #ifndef HASHOBJ_H
 #define HASHOBJ_H
 

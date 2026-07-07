@@ -1,3 +1,8 @@
+/*
+ * Implements the sorted-set data type.
+ * It supports score-based insertion, lookup, rank, and range operations.
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

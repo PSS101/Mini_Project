@@ -1,3 +1,8 @@
+/*
+ * Declares the configuration structures and helper APIs.
+ * It exposes the server settings used by startup and runtime code.
+ */
+
 #ifndef CONFIG_H
 #define CONFIG_H
 

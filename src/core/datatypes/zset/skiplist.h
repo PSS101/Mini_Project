@@ -1,3 +1,8 @@
+/*
+ * Declares the skip-list API used by sorted-set support.
+ * It exposes the node and list types for ordered storage.
+ */
+
 #ifndef SKIPLIST_H
 #define SKIPLIST_H
 

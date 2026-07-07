@@ -1,3 +1,8 @@
+/*
+ * Declares the developer CLI interface.
+ * It exposes the startup helper used by the CLI entry point.
+ */
+
 #ifndef DEV_CLI_H
 #define DEV_CLI_H
 

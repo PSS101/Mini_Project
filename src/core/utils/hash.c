@@ -1,3 +1,8 @@
+/*
+ * Provides hashing helpers used by the core engine.
+ * It implements a simple deterministic hash function for internal use.
+ */
+
 #include "hash.h"
 
 unsigned int hash(const char *key, int size) {

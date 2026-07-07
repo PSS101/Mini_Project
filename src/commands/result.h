@@ -1,3 +1,8 @@
+/*
+ * Declares the result-formatting API used by the command layer.
+ * It exposes the response types and helper functions for replies.
+ */
+
 #ifndef RESULT_H
 #define RESULT_H
 

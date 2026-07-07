@@ -1,3 +1,8 @@
+/*
+ * Implements the set data type.
+ * It manages membership checks and insertion for set values.
+ */
+
 #include <stdlib.h>
 #include <string.h>
 #include "set.h"

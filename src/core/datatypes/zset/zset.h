@@ -1,3 +1,8 @@
+/*
+ * Declares the sorted-set interface.
+ * It exposes the API for zset manipulation and querying.
+ */
+
 #ifndef ZSET_H
 #define ZSET_H
 

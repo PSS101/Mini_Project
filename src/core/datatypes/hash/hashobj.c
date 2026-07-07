@@ -1,3 +1,8 @@
+/*
+ * Implements the hash data type.
+ * It supports setting and retrieving field/value pairs inside hash objects.
+ */
+
 #include <stdlib.h>
 #include "hashobj.h"
 #include "../../object.h"

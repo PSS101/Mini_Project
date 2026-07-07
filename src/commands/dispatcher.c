@@ -1,3 +1,8 @@
+/*
+ * Implements command dispatching for parsed requests.
+ * It routes commands to their execution handlers and returns a result object.
+ */
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>

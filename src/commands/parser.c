@@ -1,3 +1,8 @@
+/*
+ * Implements parsing for Redis-like commands.
+ * It converts raw input into a structured command representation.
+ */
+
 #include <string.h>
 #include "parser.h"
 

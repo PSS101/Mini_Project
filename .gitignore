@@ -19,13 +19,9 @@ tests/tmp_sqlite_bench.db*
 *.exe
 *.dll
 *.dylib
-miniredis
-miniredis-server
-miniredis-client
-miniredis-test
 
 # Local artifacts
 *.tar.gz
 *.log
 
-tests/benchmark_charts/*.png
+

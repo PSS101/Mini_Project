@@ -1,3 +1,8 @@
+/*
+ * Builds response objects for successful and failed commands.
+ * It formats engine results so they can be sent back to clients.
+ */
+
 #include <stdlib.h>
 #include <string.h>
 #include "result.h"

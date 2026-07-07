@@ -1,3 +1,8 @@
+/*
+ * Declares the string-object interface.
+ * It defines the API for string values used by the store.
+ */
+
 #ifndef STRING_H
 #define STRING_H
 

@@ -1,3 +1,8 @@
+/*
+ * Declares the list-object interface.
+ * It exposes the operations used for list manipulation.
+ */
+
 #ifndef LIST_H
 #define LIST_H
 

@@ -1,3 +1,8 @@
+/*
+ * Provides built-in help text for the supported commands.
+ * It returns descriptions and usage information for the CLI and server.
+ */
+
 #include <string.h>
 #include <ctype.h>
 #include "help.h"

@@ -1,3 +1,8 @@
+/*
+ * Declares the store API used by the engine and command layer.
+ * It exposes entry structures, key operations, and expiration helpers.
+ */
+
 #ifndef STORE_H
 #define STORE_H
 

@@ -1,3 +1,8 @@
+/*
+ * Declares the set-object interface.
+ * It exposes the public API for set operations.
+ */
+
 #ifndef SET_H
 #define SET_H
 
