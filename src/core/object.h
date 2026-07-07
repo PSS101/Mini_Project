@@ -1,3 +1,8 @@
+/*
+ * Declares the shared object model used throughout the database.
+ * It defines the common object structure and type tags.
+ */
+
 #ifndef OBJECT_H
 #define OBJECT_H
 

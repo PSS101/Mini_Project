@@ -1,3 +1,8 @@
+/*
+ * Declares the AOF persistence interface.
+ * It exposes the helpers used to open, append, replay, and close the log.
+ */
+
 #ifndef AOF_H
 #define AOF_H
 

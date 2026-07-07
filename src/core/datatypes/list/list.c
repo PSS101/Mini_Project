@@ -1,3 +1,8 @@
+/*
+ * Implements the list data type.
+ * It supports pushing, popping, and freeing list values.
+ */
+
 #include <stdlib.h>
 #include <string.h>
 #include "list.h"

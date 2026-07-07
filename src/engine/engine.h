@@ -1,3 +1,8 @@
+/*
+ * Declares the engine interface used by the server and CLI.
+ * It exposes initialization and command-execution helpers.
+ */
+
 #ifndef ENGINE_H
 #define ENGINE_H
 

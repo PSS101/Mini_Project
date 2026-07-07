@@ -1,3 +1,8 @@
+/*
+ * Implements the string data type.
+ * It stores and exposes simple string values to the rest of the engine.
+ */
+
 #include <stdlib.h>
 #include <string.h>
 #include "string.h"

@@ -1,3 +1,8 @@
+/*
+ * Declares the dispatcher interface used by the command layer.
+ * It exposes the helpers needed to route parsed requests.
+ */
+
 #ifndef DISPATCHER_H
 #define DISPATCHER_H
 

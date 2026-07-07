@@ -1,3 +1,8 @@
+/*
+ * Implements the generic object model used by the store.
+ * It creates and frees typed objects for strings, lists, sets, hashes, and zsets.
+ */
+
 #include <stdlib.h>
 #include "object.h"
 #include "datatypes/string/string.h"

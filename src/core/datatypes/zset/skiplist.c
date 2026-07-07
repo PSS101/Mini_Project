@@ -1,3 +1,8 @@
+/*
+ * Implements the skip-list structure used by sorted sets.
+ * It provides ordered insertion, search, and deletion helpers.
+ */
+
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>

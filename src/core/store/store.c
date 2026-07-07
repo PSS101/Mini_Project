@@ -1,3 +1,8 @@
+/*
+ * Implements the in-memory key-value store.
+ * It handles storage, lookup, expiration, and typed operations for all data types.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

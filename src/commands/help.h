@@ -1,3 +1,8 @@
+/*
+ * Declares the help-system API for command documentation.
+ * It exposes helpers that return general and command-specific help text.
+ */
+
 #ifndef HELP_H
 #define HELP_H
 

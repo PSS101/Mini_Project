@@ -1,0 +1,19 @@
+Mini Redis vs SQLite benchmark report
+==========================
+Server port: 48079
+
+Write-only (SET)
+  Mini Redis avg per batch: 0.000077s (13049.06 batches/s)
+  SQLite baseline avg per batch: 0.000070s (14296.38 batches/s)
+  Mini Redis is 1.1x slower on average
+
+Read-after-write (SET + GET)
+  Mini Redis avg per batch: 0.000070s (14193.54 batches/s)
+  SQLite baseline avg per batch: 0.000083s (12115.25 batches/s)
+  Mini Redis is 0.843x slower on average
+
+Mixed read/write
+  Mini Redis avg per batch: 0.000128s (7795.23 batches/s)
+  SQLite baseline avg per batch: 0.000110s (9065.50 batches/s)
+  Mini Redis is 1.164x slower on average
+

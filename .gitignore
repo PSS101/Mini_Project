@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+ENV/
+
+# SQLite temp files
+*.db-shm
+*.db-wal
+tests/tmp_sqlite_bench.db*
+
+# Build artifacts
+*.o
+*.so
+*.exe
+*.dll
+*.dylib
+
+# Local artifacts
+*.tar.gz
+*.log
+
+

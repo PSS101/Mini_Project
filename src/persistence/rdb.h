@@ -1,3 +1,8 @@
+/*
+ * Declares the RDB persistence interface.
+ * It exposes the save and load helpers used by the runtime.
+ */
+
 #ifndef RDB_H
 #define RDB_H
 

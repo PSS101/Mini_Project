@@ -1,3 +1,8 @@
+/*
+ * Coordinates command execution across the runtime.
+ * It applies parsed commands to the store and persistence layers.
+ */
+
 #include "engine.h"
 #include "../commands/parser.h"
 #include "../commands/dispatcher.h"

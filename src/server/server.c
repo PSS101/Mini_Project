@@ -40,8 +40,9 @@
 #include "../replication/replication.h"
 #include "../scripting/scripting.h"
 
-#define RECV_BUF_SIZE    4096
-#define SEND_BUF_SIZE    8192
+#define RECV_BUF_SIZE    16384
+#define SEND_BUF_SIZE    16384
+#define LINE_BUF_SIZE    32768
 #define BACKLOG          10
 
 /* Write commands that should be persisted + replicated */
@@ -122,12 +123,12 @@ static void process_command(ClientState *cs, char *raw_line,
      * parse() replaces spaces/quotes with NUL bytes in-place, so both
      * parse_copy and raw_line are destroyed after their respective parse()
      * calls.  broadcast_copy preserves the original for AOF + replication. */
-    char broadcast_copy[RECV_BUF_SIZE];
+    char broadcast_copy[LINE_BUF_SIZE];
     strncpy(broadcast_copy, raw_line, sizeof(broadcast_copy) - 1);
     broadcast_copy[sizeof(broadcast_copy) - 1] = '\0';
 
     /* Parse a copy for token inspection */
-    char parse_copy[RECV_BUF_SIZE];
+    char parse_copy[LINE_BUF_SIZE];
     strncpy(parse_copy, raw_line, sizeof(parse_copy) - 1);
     parse_copy[sizeof(parse_copy) - 1] = '\0';
 
@@ -213,7 +214,7 @@ static void process_command(ClientState *cs, char *raw_line,
         pthread_mutex_lock(&g_db_lock);
         for (int i = 0; i < cs->tx_count; i++) {
             /* Parse for AOF/replication */
-            char aof_copy[RECV_BUF_SIZE];
+            char aof_copy[LINE_BUF_SIZE];
             strncpy(aof_copy, cs->tx_queue[i], sizeof(aof_copy) - 1);
             aof_copy[sizeof(aof_copy) - 1] = '\0';
             char *aof_tokens[MAX_TOKENS];
@@ -368,7 +369,7 @@ static void process_command(ClientState *cs, char *raw_line,
         if (res.status == 1 && argc > 0 && is_write_command(cmd_upper)) {
             if (g_cfg.aof_enabled) {
                 /* Re-parse from the pristine copy for AOF */
-                char aof_copy[RECV_BUF_SIZE];
+                char aof_copy[LINE_BUF_SIZE];
                 strncpy(aof_copy, broadcast_copy, sizeof(aof_copy) - 1);
                 aof_copy[sizeof(aof_copy) - 1] = '\0';
                 char *aof_toks[MAX_TOKENS];
@@ -418,6 +419,8 @@ send_reply:
 static void* handle_client(void *arg) {
     ClientState *cs = (ClientState*)arg;
     char recv_buf[RECV_BUF_SIZE];
+    char line_buf[LINE_BUF_SIZE];
+    size_t line_len = 0;
     char resp_buf[SEND_BUF_SIZE];
 
     while (1) {
@@ -425,29 +428,46 @@ static void* handle_client(void *arg) {
         if (n <= 0) break;
         recv_buf[n] = '\0';
 
-        /* ---- Pipelining: split on newlines, process each command ---- */
         size_t resp_pos = 0;
         resp_buf[0] = '\0';
 
-        char *saveptr = NULL;
-        char *line = strtok_r(recv_buf, "\n", &saveptr);
-        while (line) {
-            /* Trim \r */
-            line[strcspn(line, "\r")] = '\0';
-            if (strlen(line) > 0) {
-                process_command(cs, line, resp_buf, sizeof(resp_buf), &resp_pos);
+        char *data = recv_buf;
+        while (1) {
+            char *newline = strchr(data, '\n');
+            if (!newline) break;
+
+            size_t chunk_len = (size_t)(newline - data);
+            if (line_len + chunk_len >= sizeof(line_buf) - 1) {
+                line_len = 0;
             }
-            line = strtok_r(NULL, "\n", &saveptr);
+            memcpy(line_buf + line_len, data, chunk_len);
+            line_len += chunk_len;
+            line_buf[line_len] = '\0';
+            data = newline + 1;
+
+            /* Trim \r */
+            line_buf[strcspn(line_buf, "\r")] = '\0';
+            if (line_len > 0) {
+                process_command(cs, line_buf, resp_buf, sizeof(resp_buf), &resp_pos);
+            }
+            line_len = 0;
         }
 
-        /* Flush all pipelined responses at once */
+        if (*data) {
+            size_t rem = strlen(data);
+            if (line_len + rem < sizeof(line_buf) - 1) {
+                memcpy(line_buf + line_len, data, rem);
+                line_len += rem;
+                line_buf[line_len] = '\0';
+            } else {
+                line_len = 0;
+            }
+        }
+
         if (resp_pos > 0) {
             send(cs->fd, resp_buf, resp_pos, 0);
         }
 
-        /* If this connection has become a replica sink, stop reading.
-         * repl_broadcast() now owns writes to this fd; handle_client
-         * must not call recv() again or it will steal broadcast data. */
         if (cs->is_replica) break;
     }
 

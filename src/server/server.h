@@ -1,3 +1,8 @@
+/*
+ * Declares the server interface and runtime helpers.
+ * It exposes the functions used to start and manage the server.
+ */
+
 #ifndef SERVER_H
 #define SERVER_H
 
