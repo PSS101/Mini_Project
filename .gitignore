@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+ENV/
+
+# SQLite temp files
+*.db-shm
+*.db-wal
+tests/tmp_sqlite_bench.db*
+
+# Build artifacts
+*.o
+*.so
+*.exe
+*.dll
+*.dylib
+miniredis
+miniredis-server
+miniredis-client
+miniredis-test
+
+# Local artifacts
+*.tar.gz
+*.log
+
+tests/benchmark_charts/*.png
